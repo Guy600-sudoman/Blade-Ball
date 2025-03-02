@@ -43,5 +43,5 @@ local AutoParryBallButton = Section:NewButton("Auto Parry Ball", "Can't Be Turne
 end)
 
 Section:NewButton("Close Combat", "Hold Block (cant be turned off)", function()
-loadstring(game:HttpGet("https://pastebin.com/raw/t2391h1A"))()
+https://pastebin.com/raw/XxWXQx7u
 end)

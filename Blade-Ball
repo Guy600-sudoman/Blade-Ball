@@ -1,5 +1,5 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Main", "Ocean")
+local Window = Library.CreateLib("Blade Ball Script", "Ocean")
 local Tab = Window:NewTab("Main")
 local Section = Tab:NewSection("Main Exploits")
 

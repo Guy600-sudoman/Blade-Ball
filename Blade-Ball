@@ -41,3 +41,7 @@ local AutoParryBallButton = Section:NewButton("Auto Parry Ball", "Can't Be Turne
         scriptRunning = true
     end
 end)
+
+Section:NewButton("Auto Spam", "Hold Block to spam (cant be turned off)", function()
+loadstring(game:HttpGet("https://pastebin.com/raw/t2391h1A"))()
+end)

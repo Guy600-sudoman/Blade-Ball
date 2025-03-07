@@ -1,47 +1,133 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Blade Ball Script", "Ocean")
-local Tab = Window:NewTab("Main")
-local Section = Tab:NewSection("Main Exploits")
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
--- Variables to manage the script and visualizer
-local scriptRunning = false
-local visualizer = nil
+-- Create the main window
+local Window = Rayfield:CreateWindow({
+   Name = "Blade Ball Script",
+   LoadingTitle = "Please wait",
+   LoadingSubtitle = "While we are setting everything up",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = "BladeBall",
+      FileName = "RayfieldConfig"
+   },
+   Discord = {
+      Enabled = true,
+      Invite = "your-discord-invite",
+      RememberJoins = true
+   },
+   KeySystem = false,
+   Key = "your-key-here"
+})
 
--- Function to remove the visualizer
-local function removeVisualizer()
-    if visualizer then
-        pcall(function()
-            visualizer:Destroy()  -- Destroy the visualizer object
+-- Main Tab
+local MainTab = Window:CreateTab("🏠Main", 4483362458)
+
+-- Auto Parry Button in Main Tab
+MainTab:CreateButton({
+   Name = "Auto Parry",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/1f0yt/community/main/Circle"))()
+   end
+})
+
+-- Exploits Tab
+local ExploitsTab = Window:CreateTab("Exploits", 4483362458)
+
+-- SpeedHack Toggle
+local SpeedHackToggle = ExploitsTab:CreateToggle({
+    Name = "SpeedHack Toggle",
+    CurrentValue = false,
+    Flag = "SpeedHackToggle",
+    Callback = function(Value)
+        if Value then
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = SpeedHackSliderValue
+        else
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+        end
+    end,
+})
+
+-- SpeedHack Slider
+local SpeedHackSliderValue = 22
+local SpeedHackSlider = ExploitsTab:CreateSlider({
+    Name = "SpeedHack Slider",
+    Range = {16, 250},
+    Increment = 1,
+    Suffix = "Speed",
+    CurrentValue = 22,
+    Flag = "SpeedHackSlider",
+    Callback = function(Value)
+        SpeedHackSliderValue = Value
+        if SpeedHackToggle.CurrentValue then
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+        end
+    end,
+})
+
+-- Infinite Jump Button
+ExploitsTab:CreateButton({
+    Name = "Infinite Jump",
+    Callback = function()
+        local InfiniteJumpEnabled = true
+        game:GetService("UserInputService").JumpRequest:connect(function()
+            if InfiniteJumpEnabled then
+                game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+            end
         end)
-        visualizer = nil
     end
-end
+})
 
--- Variable to store the Circle script loaded by loadstring
-local CircleScript
+-- Low Gravity Toggle
+local LowGravityEnabled = false
+local LowGravitySliderValue = 1
+local defaultGravity = 196.2  -- Default gravity value
 
--- Function to run the Circle script
-local function runCircleScript()
-    -- Load and execute the Circle script
-    CircleScript = loadstring(game:HttpGet("https://raw.githubusercontent.com/1f0yt/community/main/Circle"))()
-end
+local LowGravityToggle = ExploitsTab:CreateToggle({
+    Name = "Low Gravity",
+    CurrentValue = false,
+    Flag = "LowGravityToggle",
+    Callback = function(Value)
+        LowGravityEnabled = Value
+        if LowGravityEnabled then
+            game:GetService("Workspace").Gravity = LowGravitySliderValue
+        else
+            game:GetService("Workspace").Gravity = defaultGravity -- Reset to default gravity
+        end
+    end,
+})
 
--- Function to stop the Circle script and remove visualizer (although it can't be fully turned off)
-local function stopCircleScript()
-    -- Here we attempt to cleanly stop the visualizer or objects created by the Circle script
-    removeVisualizer()
-    scriptRunning = false
-end
+-- Low Gravity Slider
+local LowGravitySlider = ExploitsTab:CreateSlider({
+    Name = "Low Gravity Slider",
+    Range = {1, defaultGravity},  -- Minimum is 1, Max is default gravity (196.2)
+    Increment = 0.1,
+    Suffix = "Gravity",
+    CurrentValue = 1,
+    Flag = "LowGravitySlider",
+    Callback = function(Value)
+        LowGravitySliderValue = Value
+        if LowGravityEnabled then
+            game:GetService("Workspace").Gravity = Value
+        end
+    end,
+})
 
--- Button to start the Circle script
-local AutoParryBallButton = Section:NewButton("Auto Parry Ball", "Can't Be Turned Off", function()
-    if not scriptRunning then
-        -- Run the Circle script if it's not running
-        runCircleScript()
-        scriptRunning = true
-    end
-end)
+-- Settings Tab
+local SettingsTab = Window:CreateTab("Settings", 4483362458)
 
-Section:NewButton("Close Combat", "Hold Block (cant be turned off)", function()
-https://pastebin.com/raw/XxWXQx7u
-end)
+-- Unload Button
+SettingsTab:CreateButton({
+   Name = "Unload",
+   Callback = function()
+      -- Reset values to defaults before unloading the script
+      game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 22
+      game:GetService("Workspace").Gravity = defaultGravity
+      game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+      
+      -- Destroy Rayfield UI
+      Rayfield:Destroy()
+   end
+})
+
+-- Finalize the UI
+Window:Select()

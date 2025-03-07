@@ -114,7 +114,7 @@ local LowGravityToggle = ExploitsTab:CreateToggle({
 -- Low Gravity Slider
 local LowGravitySlider = ExploitsTab:CreateSlider({
     Name = "Low Gravity Slider",
-    Range = {1, defaultGravity},  -- Minimum is 1, Max is default gravity (196.2)
+    Range = {0.1, defaultGravity},  -- Minimum is 0.1, Max is default gravity (196.2)
     Increment = 0.1,
     Suffix = "Gravity",
     CurrentValue = 1,

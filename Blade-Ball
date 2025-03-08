@@ -2,42 +2,42 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
    Name = "Blade Ball Script",
-   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   Icon = 0,
    LoadingTitle = "Please Wait",
    LoadingSubtitle = "We Are Setting The Script Up",
-   Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+   Theme = "Default",
 
    DisableRayfieldPrompts = false,
-   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+   DisableBuildWarnings = false,
 
    ConfigurationSaving = {
       Enabled = true,
-      FolderName = nil, -- Create a custom folder for your hub/game
+      FolderName = nil,
       FileName = "Big Hub"
    },
 
    Discord = {
-      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
-      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
-      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+      Enabled = false,
+      Invite = "noinvitelink",
+      RememberJoins = true
    },
 
-   KeySystem = true, -- Set this to true to use our key system
+   KeySystem = true,
    KeySettings = {
       Title = "Blade Ball Script | Key System",
-      Subtitle = "Get the key in the note",
-      Note = "Get The Key from URL Below https://pastebin.com/kxB768SG", -- Use this to tell the user how to get a key
-      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-      SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-      GrabKeyFromSite = true, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"https://pastebin.com/raw/kxB768SG"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+      Subtitle = "🔑 Enter the key below",
+      Note = "Get The Key from URL Below https://pastebin.com/kxB768SG",
+      FileName = "Key",
+      SaveKey = false,
+      GrabKeyFromSite = true,
+      Key = {"https://pastebin.com/raw/kxB768SG"}
    }
 })
 
 -- Main Tab
-local MainTab = Window:CreateTab("🏠Main", 4483362458)
+local MainTab = Window:CreateTab("Main", "home")
 
--- Auto Parry Button in Main Tab
+-- Auto Parry Button
 MainTab:CreateButton({
    Name = "Auto Parry",
    Callback = function()
@@ -46,7 +46,7 @@ MainTab:CreateButton({
 })
 
 -- Exploits Tab
-local ExploitsTab = Window:CreateTab("Exploits", 4483362458)
+local ExploitsTab = Window:CreateTab("Exploits", "bug")
 
 -- SpeedHack Toggle
 local SpeedHackToggle = ExploitsTab:CreateToggle({
@@ -95,7 +95,7 @@ ExploitsTab:CreateButton({
 -- Low Gravity Toggle
 local LowGravityEnabled = false
 local LowGravitySliderValue = 1
-local defaultGravity = 196.2  -- Default gravity value
+local defaultGravity = 196.2
 
 local LowGravityToggle = ExploitsTab:CreateToggle({
     Name = "Low Gravity",
@@ -106,7 +106,7 @@ local LowGravityToggle = ExploitsTab:CreateToggle({
         if LowGravityEnabled then
             game:GetService("Workspace").Gravity = LowGravitySliderValue
         else
-            game:GetService("Workspace").Gravity = defaultGravity -- Reset to default gravity
+            game:GetService("Workspace").Gravity = defaultGravity
         end
     end,
 })
@@ -114,7 +114,7 @@ local LowGravityToggle = ExploitsTab:CreateToggle({
 -- Low Gravity Slider
 local LowGravitySlider = ExploitsTab:CreateSlider({
     Name = "Low Gravity Slider",
-    Range = {0.1, defaultGravity},  -- Minimum is 0.1, Max is default gravity (196.2)
+    Range = {0.1, defaultGravity},
     Increment = 0.1,
     Suffix = "Gravity",
     CurrentValue = 1,
@@ -128,18 +128,16 @@ local LowGravitySlider = ExploitsTab:CreateSlider({
 })
 
 -- Settings Tab
-local SettingsTab = Window:CreateTab("Settings", 4483362458)
+local SettingsTab = Window:CreateTab("Settings", "settings")
 
 -- Unload Button
 SettingsTab:CreateButton({
    Name = "Unload",
    Callback = function()
-      -- Reset values to defaults before unloading the script
       game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 22
       game:GetService("Workspace").Gravity = defaultGravity
       game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
-      
-      -- Destroy Rayfield UI
+
       Rayfield:Destroy()
    end
 })

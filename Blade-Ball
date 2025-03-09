@@ -1,8 +1,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Phi Hub|Blade Ball",
-   Icon = 0,
+   Name = "Pi Hub | Blade Ball",
+   Icon = pi,
    LoadingTitle = "Please Wait",
    LoadingSubtitle = "We Are Setting The Script Up",
    Theme = "Default",
@@ -24,7 +24,7 @@ local Window = Rayfield:CreateWindow({
 
    KeySystem = true,
    KeySettings = {
-      Title = "Phi Hub | Blade Ball | Key System",
+      Title = "Pi Hub | Blade Ball | Key System",
       Subtitle = "🔑 Enter the key below",
       Note = "Get The Key from URL Below https://pastebin.com/kxB768SG",
       FileName = "Key",

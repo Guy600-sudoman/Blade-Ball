@@ -37,6 +37,12 @@ local Window = Rayfield:CreateWindow({
 -- Main Tab
 local MainTab = Window:CreateTab("Main", "home")
 
+Rayfield:Notify({
+   Title = "Script succsessfully executed!",
+   Content = "yay",
+   Duration = 5,
+   Image = "check",
+})
 -- Auto Parry Button
 MainTab:CreateButton({
    Name = "Auto Parry",
@@ -127,6 +133,9 @@ local LowGravitySlider = ExploitsTab:CreateSlider({
     end,
 })
 
+local CreditsTab = Window:CreateTab("Credits", "trophy")
+
+local Label = CreditsTab:CreateLabel("Developer: @RobloxMultiverse_IV", "user")
 -- Settings Tab
 local SettingsTab = Window:CreateTab("Settings", "cog")
 

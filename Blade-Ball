@@ -1,8 +1,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Pi Hub | Blade Ball",
-   Icon = "pi",
+   Name = "Sigma Hub | Blade Ball",
+   Icon = "sigma",
    LoadingTitle = "Please Wait",
    LoadingSubtitle = "We Are Setting The Script Up",
    Theme = "Default",
@@ -132,10 +132,6 @@ local LowGravitySlider = ExploitsTab:CreateSlider({
         end
     end,
 })
-
-local CreditsTab = Window:CreateTab("Credits", "trophy")
-
-local Label = CreditsTab:CreateLabel("Developer: @RobloxMultiverse_IV", "user")
 -- Settings Tab
 local SettingsTab = Window:CreateTab("Settings", "cog")
 

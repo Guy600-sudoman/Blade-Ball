@@ -2,7 +2,7 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
    Name = "Pi Hub | Blade Ball",
-   Icon = pi,
+   Icon = "pi",
    LoadingTitle = "Please Wait",
    LoadingSubtitle = "We Are Setting The Script Up",
    Theme = "Default",
